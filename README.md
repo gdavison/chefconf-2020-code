@@ -128,7 +128,7 @@ Next, the Chef Infra Server needs to be deployed.
 
 It can be deployed by running `terraform apply -target='module.chef_infra_server'` from the `infrastructure` directory. The server hostname will be `https://server.chef-conf.<your domain>/`.
 
-Once the instance is running, connect to the instance using the [AWS Systems Manager Session Manager console](https://console.aws.amazon.com/systems-manager/session-manager/sessions) so that you can configure the server.  The Chef Infra Server setup has created an Organization and an administrator user, named `test_org` and `chef_managed_user_test_org`, respectively.
+Once the instance is running, connect to the instance using the [AWS Systems Manager Session Manager console](https://console.aws.amazon.com/systems-manager/session-manager/sessions) so that you can configure the server.  The Chef Infra Server setup has created an Organization and an administrator user, named `example_org` and `chef_managed_user_example_org`, respectively.
 
 First, configure Chef Infra Server data collection using the instructions at https://automate.chef.io/docs/data-collection/
 
@@ -143,13 +143,13 @@ data_collector['proxy']    = true
 profiles['root_url']       = 'https://<chef-automate-hostname>'
 ```
 
-1. Save the `test_org` validation key found at `/etc/opscode/managed/test_org/test_org-validator.pem` in AWS Systems Manager Parameter Store as a `SecureString` with the name `chef-infra-server-validator`. You can use the web console. This will be used by the test instances to register with the Chef Infra Server.
+1. Save the `example_org` validation key found at `/etc/opscode/managed/example_org/example_org-validator.pem` in AWS Systems Manager Parameter Store as a `SecureString` with the name `chef-infra-server-validator`. You can use the web console. This will be used by the test instances to register with the Chef Infra Server.
 
 Next, configure Chef Infra tools on your workstation.
 
-1. Copy the user key found at `/etc/opscode/managed/test_org/test_org-user.key` and save it on your workstation as `~/.chef/test_org-user.pem`.
+1. Copy the user key found at `/etc/opscode/managed/example_org/example_org-user.key` and save it on your workstation as `~/.chef/example_org-user.pem`.
 
-1. On your workstation, run the command `knife configure`. When prompted for the Chef Infra Server URL, enter `https://<chef-infra-server-hostname>/organizations/test_org`. When prompted for the username, enter `test_org-user`.
+1. On your workstation, run the command `knife configure`. When prompted for the Chef Infra Server URL, enter `https://<chef-infra-server-hostname>/organizations/example_org`. When prompted for the username, enter `example_org-user`.
 
 1. The Chef Infra Server is configured to use a self-signed TLS certificate. To add the certificate to Chef Infra's trusted certificates, run the command `knife ssl fetch`.
 

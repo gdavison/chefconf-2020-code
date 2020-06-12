@@ -11,6 +11,6 @@ default_source :supermarket
 
 run_list 'managed_chef_server::default', 'managed_chef_server::managed_organization'
 
-default['mcs']['org']['name'] = 'test_org'
+default['mcs']['org']['name'] = 'example_org'
 
 default['chef-server']['accept_license'] = true
