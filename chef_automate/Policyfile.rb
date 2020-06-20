@@ -14,3 +14,5 @@ run_list 'chef_automate::default'
 
 # Specify a custom source for a single cookbook:
 cookbook 'chef_automate', path: '.'
+
+cookbook 'chef-ingredient', github: 'gdavison/chef-ingredient', branch: 'fix-automate-guard'

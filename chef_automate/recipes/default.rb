@@ -23,3 +23,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+chef_automatev2 'automate' do
+  version node['chef_automate']['version'] || nil
+  channel node['chef_automate']['channel'] || nil
+
+  accept_license node['chef_automate']['accept_license']
+
+  config <<~CONF
+    [global.v1]
+    fqdn = "#{node['chef_automate']['fqdn']}"
+  CONF
+end
